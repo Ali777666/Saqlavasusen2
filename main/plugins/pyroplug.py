@@ -92,7 +92,7 @@ async def get_msg(userbot, client, bot, sender, edit_id, msg_link, i):
                         time.time()
                     )
                 )
-            elif msg.media==MessageMediaType.VIDEO and msg.video.mime_type in ["video/mp4", "video/x-matroska"]:
+            elif msg.media==MessageMediaType.VIDEO and msg.video.mime_type in ["video/mp4", "video/x-matroska", "video/x-m4v"]:
                 print("Trying to get metadata")
                 data = video_metadata(file)
                 height, width, duration = data["height"], data["width"], data["duration"]
@@ -160,7 +160,7 @@ async def get_msg(userbot, client, bot, sender, edit_id, msg_link, i):
             or "SendMediaRequest" in str(e) \
             or str(e) == "File size equals to 0 B":
                 try: 
-                    if msg.media==MessageMediaType.VIDEO and msg.video.mime_type in ["video/mp4", "video/x-matroska"]:
+                    if msg.media==MessageMediaType.VIDEO and msg.video.mime_type in ["video/mp4", "video/x-matroska", "video/x-m4v"]:
                         UT = time.time()
                         uploader = await fast_upload(f'{file}', f'{file}', UT, bot, edit, '**UPLOADING:**')
                         attributes = [DocumentAttributeVideo(duration=duration, w=width, h=height, round_message=round_message, supports_streaming=True)] 
